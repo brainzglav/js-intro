@@ -42,8 +42,10 @@ var myString = 13;
 console.log(String(myString));
 console.log(typeof typeof myString);
  */
-debugger;
 
+//debugger;
+
+/* 
 var i = 1;
 
 console.log(++i);
@@ -59,3 +61,8 @@ i = i + 1;
 i += 1;
 
 console.log(i);
+ */
+
+var a = 2;
+
+console.log(a++, a, ++a);
