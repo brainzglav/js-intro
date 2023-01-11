@@ -1,7 +1,4 @@
-.color {
-    color: green;
-}
-
-.color--danger {
-    color: red;
-}
+@import "styles/elements.css";
+@import "styles/flex.css";
+@import "styles/sizing.css";
+@import "styles/colors.css";

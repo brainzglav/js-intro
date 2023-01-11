@@ -1,0 +1,20 @@
+.button {
+    color: white;
+    background-color: darkred;
+    padding: 10px 20px;
+}
+
+.student-list {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 100%;
+    gap: 10px;
+}
+
+.student-list__item {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: ghostwhite;
+    border-radius: 5px;
+}

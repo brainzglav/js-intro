@@ -1,10 +1,11 @@
 function displayList(students) {
   students.forEach(({ name, testResult }) => {
     const list = document.getElementById("student-list");
-    const listElement = document.createElement("li");
+    const listItem = document.createElement("li");
 
-    listElement.textContent = `Student: ${name} Test Result: ${testResult}`;
-    list.appendChild(listElement);
+    listItem.textContent = `Student: ${name} Test Result: ${testResult}`;
+    listItem.className = "student-list__item";
+    list.appendChild(listItem);
   });
 }
 
@@ -38,7 +39,7 @@ filteredStudentsBtn.addEventListener("click", () =>
   displayList(studentsWhoPassed)
 );
 
-console.log({ list, listElement });
-
 //students.forEach(({ printStudent }) => printStudent());
 //console.log({ students, studentsWhoPassed, firstExcellentStudent });
+
+displayList(students);
