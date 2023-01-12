@@ -7,14 +7,27 @@
 .student-list {
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 100%;
     gap: 10px;
+    width: 400px;
+    height: 300px;
+    overflow-y: auto;
 }
 
 .student-list__item {
-    width: 100%;
+    display: flex;
     padding: 10px 20px;
     background-color: ghostwhite;
     border-radius: 5px;
+}
+
+.status-marker {
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    border-radius: 100%;
+    background-color: green;
+}
+
+.status-marker--danger {
+    background-color: red;
 }
