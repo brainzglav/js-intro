@@ -11,9 +11,10 @@
   </head>
   <body>
     <main class="flex-justify-center">
-      <div>
-        <button id="all-btn" class="button">All Students</button>
-        <button id="filtered-btn" class="button">Filtered Students</button>
+      <div class="flex flex-align-center">
+        <label for="filter-switch" class="m-r-10">Student filter:</label>
+        <button id="filter-switch" class="switch m-r-10"></button>
+        <div id="total-points">Total points:</div>
       </div>
       <ul id="student-list" class="student-list"></ul>
     </main>

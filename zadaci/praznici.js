@@ -27,6 +27,10 @@ Output: false
 Primjer 3: 
 Input: '(c * (a+b)) * (x - (y * (c - d)))'
 Output: true
+
+Primjer 4: 
+Input: ')('
+Output: false
 */
 
 /* 

@@ -2,23 +2,21 @@ import { displayList, createStudentList } from "./student.js";
 
 const arr = ["Ante", "Mate", "Antea", "Matea", "Sime", "Marko"];
 const { students, studentsWhoPassed } = createStudentList(arr);
-const firstExcellentStudent = students.find(
-  ({ testResult }) => testResult >= 90
-);
 const totalPoints = students.reduce(
   (sum, { testResult }) => sum + testResult,
   0
 );
-const allStudentsBtn = document.getElementById("all-btn");
-const filteredStudentsBtn = document.getElementById("filtered-btn");
+let isSwitchActive = false;
+const switchElement = document.getElementById("filter-switch");
+switchElement.addEventListener("click", () => {
+  isSwitchActive = !isSwitchActive;
+  switchElement.classList.toggle("switch--enabled");
+  displayList(isSwitchActive ? studentsWhoPassed : students);
+});
 
-allStudentsBtn.addEventListener("click", () => displayList(students));
-filteredStudentsBtn.addEventListener("click", () =>
-  displayList(studentsWhoPassed)
-);
+const totalElement = document.getElementById("total-points");
 
-//students.forEach(({ printStudent }) => printStudent());
-//console.log({ students, studentsWhoPassed, firstExcellentStudent });
+totalElement.textContent = totalElement.textContent.concat(" ", totalPoints);
 
+// Inicijalizacija
 displayList(students);
-console.log(students);
