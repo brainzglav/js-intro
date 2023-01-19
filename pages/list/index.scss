@@ -1,0 +1,64 @@
+@import "../../styles/colors.scss";
+
+.button {
+    color: $color-font-primary;
+    background-color: $color-button-primary;
+    padding: 10px 20px;
+}
+
+.switch {
+    position: relative;
+    width: 54px;
+    height: 32px;
+    border-radius: 25px;
+    background-color: $color-danger;
+    transition: all 0.2s;
+
+    &--enabled {
+        background-color: $color-success;
+
+        &.switch::after {
+            left: unset;
+            right: 2px;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 28px;
+        height: 28px;
+        background-color: $color-bg-secondary;
+        border-radius: 100%;
+    }
+}
+
+.student-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+    height: 300px;
+    overflow-y: auto;
+
+    &__item {
+        display: flex;
+        padding: 10px 20px;
+        background-color: $color-bg-secondary;
+        border-radius: 5px;
+    }
+}
+
+.status-marker {
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    border-radius: 100%;
+    background-color: $color-success;
+
+    &--danger {
+        background-color: $color-danger;
+    }
+}

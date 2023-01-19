@@ -1,0 +1,35 @@
+:root {
+  --color-success: green;
+  --color-danger: red;
+  --color-info: blue;
+  --font-color-default: white;
+}
+
+.alt {
+  --color-success: orange;
+  --color-danger: lightblue;
+  --color-info: lightgreen;
+  --font-color-default: black;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+.button-container__button {
+  padding: 10px 20px;
+  background-color: var(--color-success);
+  color: var(--font-color-default);
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button-container__button:hover {
+  filter: brightness(120%);
+}
+.button-container__button--danger {
+  background-color: var(--color-danger);
+}
+.button-container__button--blue {
+  background-color: var(--color-info);
+}

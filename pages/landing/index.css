@@ -1,0 +1,10 @@
+.button {
+  color: var(--color-font-primary);
+  background-color: var(--color-button-primary);
+  padding: 50px 100px;
+  font-size: 72px;
+  transition: filter 0.2s;
+}
+.button:hover {
+  filter: brightness(120%);
+}

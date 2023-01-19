@@ -1,0 +1,44 @@
+:root {
+    --color-success: green;
+    --color-danger: red;
+    --color-info: blue;
+    --font-color-default: white;
+}
+
+.alt {
+    --color-success: orange;
+    --color-danger: lightblue;
+    --color-info: lightgreen;
+    --font-color-default: black;
+}
+
+$color-success: var(--color-success);
+$color-danger: var(--color-danger);
+$color-info: var(--color-info);
+$font-color-default: var(--font-color-default);
+
+.button-container {
+    display: flex;
+    gap: 10px;
+
+    &__button {
+        padding: 10px 20px;
+        background-color: $color-success;
+        color: $font-color-default;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(120%);
+        }
+
+        &--danger {
+            background-color: $color-danger;
+        }
+
+        &--blue {
+            background-color: $color-info;
+        }
+    }
+}
