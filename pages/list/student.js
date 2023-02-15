@@ -10,7 +10,7 @@ function createListItem({ name, testResult, hasPassed }) {
   const status = !hasPassed ? "status-marker--danger" : "";
   const html = `
   <li class="student-list__item">
-    Student: ${name} Test Result: ${testResult}
+    Student: ${name} Result: ${testResult}
     <div class="status-marker ${status}"></div>
   </li>
   `;

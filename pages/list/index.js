@@ -1,6 +1,18 @@
 import { displayList, createStudentList } from "./student.js";
 
-const arr = ["Ante", "Mate", "Antea", "Matea", "Sime", "Marko"];
+async function addNewUser(event) {
+  event.preventDefault();
+
+  const _res = await fetch("http://localhost:3000/users", {
+    method: "POST",
+    body: JSON.stringify({ name: "Test" }),
+  });
+
+  console.log(_res);
+}
+
+const res = await fetch("http://localhost:3000/users");
+const arr = await res.json();
 const { students, studentsWhoPassed } = createStudentList(arr);
 const totalPoints = students.reduce(
   (sum, { testResult }) => sum + testResult,
@@ -15,6 +27,9 @@ switchElement.addEventListener("click", () => {
 });
 
 const totalElement = document.getElementById("total-points");
+const addButtonElement = document.getElementById("add-btn");
+
+addButtonElement.addEventListener("click", addNewUser);
 
 totalElement.textContent = totalElement.textContent.concat(" ", totalPoints);
 
