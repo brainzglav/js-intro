@@ -1,18 +1,29 @@
-import { displayList, createStudentList } from "./student.js";
+import { displayList, createStudentList, url } from "./student.js";
 
 async function addNewUser(event) {
-  event.preventDefault();
+  console.log({ event, nameInputElement });
+  const name = nameInputElement.value;
 
-  const _res = await fetch("http://localhost:3000/users", {
+  // Early return
+  if (!name) {
+    alert("Please specify student name");
+
+    return;
+  }
+
+  const res = await axios.post(url("/users"), { name });
+
+  /* const res = await fetch("http://localhost:3000/users", {
     method: "POST",
-    body: JSON.stringify({ name: "Test" }),
-  });
-
-  console.log(_res);
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name }),
+  }); */
 }
 
-const res = await fetch("http://localhost:3000/users");
-const arr = await res.json();
+const { data } = await axios.get(url("/users"));
+const arr = data.map(({ name }) => name);
 const { students, studentsWhoPassed } = createStudentList(arr);
 const totalPoints = students.reduce(
   (sum, { testResult }) => sum + testResult,
@@ -28,6 +39,7 @@ switchElement.addEventListener("click", () => {
 
 const totalElement = document.getElementById("total-points");
 const addButtonElement = document.getElementById("add-btn");
+const nameInputElement = document.getElementById("name-input");
 
 addButtonElement.addEventListener("click", addNewUser);
 

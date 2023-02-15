@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="../../style.css" />
     <link rel="stylesheet" href="./index.css" />
     <title>Student List</title>
+    <script defer src="../../node_modules/axios/dist/axios.min.js"></script>
     <script defer type="module" src="./index.js"></script>
   </head>
   <body>
     <main class="flex-justify-center">
-      <div class="flex flex-align-center">
+      <div class="flex flex-align-center m-b-20">
         <label for="filter-switch" class="m-r-10">Student filter:</label>
         <button id="filter-switch" class="switch m-r-10"></button>
         <div id="total-points">Total points:</div>
       </div>
+      <div class="flex">
+        <input id="name-input" class="m-r-10" type="text" />
+        <button id="add-btn" class="button" type="button">Add new user</button>
+      </div>
       <ul id="student-list" class="student-list"></ul>
-      <button id="add-btn" class="button" type="button">Add new user</button>
     </main>
   </body>
 </html>

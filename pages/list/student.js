@@ -63,7 +63,15 @@ export function createStudentList(names) {
   return { students, studentsWhoPassed };
 }
 
+export function url(route) {
+  return `${API_HOST}${route}`;
+}
+
+export const API_HOST = "http://localhost:3000";
+
 export default {
+  url,
+  API_HOST,
   displayList,
   clearList,
   createStudentList,
