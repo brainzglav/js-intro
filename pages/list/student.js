@@ -1,3 +1,17 @@
+export let selectedStudent = null;
+
+export async function addNewStudent(student) {
+  const { data } = await axios.post(url("/users"), student);
+
+  return data;
+}
+
+export async function modifyStudent(student) {
+  const { data } = await axios.put(url(`/users/${selectedStudent}`), student);
+
+  return data;
+}
+
 function createElement(html) {
   const template = document.createElement("template");
 
@@ -6,16 +20,39 @@ function createElement(html) {
   return template.content.cloneNode(true);
 }
 
-function createListItem({ name, testResult, hasPassed }) {
+function selectStudent(id) {
+  if (selectedStudent !== null) {
+    const prevElement = document.getElementById(`student-${selectedStudent}`);
+
+    prevElement.classList.remove("student-list__item--selected");
+  }
+
+  const currentElement = document.getElementById(`student-${id}`);
+
+  if (selectedStudent === id) {
+    selectedStudent = null;
+
+    return;
+  }
+
+  selectedStudent = id;
+  currentElement.classList.add("student-list__item--selected");
+}
+
+function createListItem({ id, name, testResult, hasPassed }) {
   const status = !hasPassed ? "status-marker--danger" : "";
   const html = `
-  <li class="student-list__item">
+  <li id="student-${id}" class="student-list__item">
     Student: ${name} Result: ${testResult}
     <div class="status-marker ${status}"></div>
   </li>
   `;
+  const templateElement = createElement(html);
+  const listElement = templateElement.childNodes[1];
 
-  return createElement(html);
+  listElement.onclick = () => selectStudent(id);
+
+  return templateElement;
 }
 
 export function displayList(students) {
@@ -34,17 +71,13 @@ export function clearList() {
   list.innerHTML = "";
 }
 
-export function createStudentList(names) {
-  let students = names.map((name, id) => {
-    const testResult = Math.round(Math.random() * 100);
-
+export function createStudentList(rawStudents) {
+  let students = rawStudents.map(({ id, name, percentage }) => {
     return {
       id,
       name,
-      testResult,
-      hasPassed: testResult >= 50,
-      printStudent: () =>
-        console.log(`Student ${name} has ${testResult} points`),
+      testResult: +percentage,
+      hasPassed: percentage >= 50,
     };
   });
   const studentsWhoPassed = students.filter(({ hasPassed }) => hasPassed);
@@ -63,6 +96,12 @@ export function createStudentList(names) {
   return { students, studentsWhoPassed };
 }
 
+export function getValues(form) {
+  const formData = new FormData(form);
+
+  return Object.fromEntries(formData);
+}
+
 export function url(route) {
   return `${API_HOST}${route}`;
 }
@@ -70,9 +109,13 @@ export function url(route) {
 export const API_HOST = "http://localhost:3000";
 
 export default {
+  addNewStudent,
+  modifyStudent,
+  selectedStudent,
   url,
   API_HOST,
   displayList,
   clearList,
   createStudentList,
+  getValues,
 };

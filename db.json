@@ -2,15 +2,23 @@
   "users": [
     {
       "name": "Ante",
+      "percentage": "50",
       "id": 1
     },
     {
       "name": "Antea",
+      "percentage": "100",
       "id": 2
     },
     {
       "name": "Marko",
+      "percentage": "51",
       "id": 3
+    },
+    {
+      "name": "Stjepan",
+      "percentage": "30",
+      "id": 4
     }
   ]
 }

@@ -1,47 +1,57 @@
-import { displayList, createStudentList, url } from "./student.js";
+import {
+  displayList,
+  createStudentList,
+  url,
+  getValues,
+  selectedStudent,
+  modifyStudent,
+  addNewStudent,
+} from "./student.js";
 
-async function addNewUser(event) {
-  console.log({ event, nameInputElement });
-  const name = nameInputElement.value;
+function onSubmit(event) {
+  event.preventDefault();
+
+  const { name, percentage } = getValues(event.target);
 
   // Early return
   if (!name) {
-    alert("Please specify student name");
+    alert("Please specify student name!");
 
     return;
   }
 
-  const res = await axios.post(url("/users"), { name });
+  if (!percentage || percentage < 0 || percentage > 100) {
+    alert("Incorrect percentage, must be between 0 and 100!");
 
-  /* const res = await fetch("http://localhost:3000/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name }),
-  }); */
+    return;
+  }
+
+  if (selectedStudent) {
+    modifyStudent({ name, percentage });
+
+    return;
+  }
+
+  addNewStudent({ name, percentage });
 }
 
 const { data } = await axios.get(url("/users"));
-const arr = data.map(({ name }) => name);
-const { students, studentsWhoPassed } = createStudentList(arr);
+const { students, studentsWhoPassed } = createStudentList(data);
 const totalPoints = students.reduce(
   (sum, { testResult }) => sum + testResult,
   0
 );
 let isSwitchActive = false;
 const switchElement = document.getElementById("filter-switch");
+const totalElement = document.getElementById("total-points");
+const studentFormElement = document.getElementById("student-form");
+
+studentFormElement.addEventListener("submit", onSubmit);
 switchElement.addEventListener("click", () => {
   isSwitchActive = !isSwitchActive;
   switchElement.classList.toggle("switch--enabled");
   displayList(isSwitchActive ? studentsWhoPassed : students);
 });
-
-const totalElement = document.getElementById("total-points");
-const addButtonElement = document.getElementById("add-btn");
-const nameInputElement = document.getElementById("name-input");
-
-addButtonElement.addEventListener("click", addNewUser);
 
 totalElement.textContent = totalElement.textContent.concat(" ", totalPoints);
 

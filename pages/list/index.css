@@ -43,6 +43,10 @@
   padding: 10px 20px;
   background-color: var(--color-bg-secondary);
   border-radius: 5px;
+  cursor: pointer;
+}
+.student-list__item--selected {
+  filter: brightness(80%);
 }
 
 .status-marker {

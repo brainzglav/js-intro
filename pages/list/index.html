@@ -17,10 +17,11 @@
         <button id="filter-switch" class="switch m-r-10"></button>
         <div id="total-points">Total points:</div>
       </div>
-      <div class="flex">
-        <input id="name-input" class="m-r-10" type="text" />
-        <button id="add-btn" class="button" type="button">Add new user</button>
-      </div>
+      <form id="student-form" class="flex">
+        <input class="m-r-10" name="name" class="m-r-10" type="text" />
+        <input class="m-r-10" name="percentage" class="m-r-10" type="number" />
+        <button class="button" type="submit">Submit</button>
+      </form>
       <ul id="student-list" class="student-list"></ul>
     </main>
   </body>
