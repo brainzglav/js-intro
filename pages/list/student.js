@@ -6,8 +6,17 @@ export async function addNewStudent(student) {
   return data;
 }
 
-export async function modifyStudent(student) {
-  const { data } = await axios.put(url(`/users/${selectedStudent}`), student);
+// 1. nacin
+export async function modifyStudent({ id, ...student }) {
+  // 2. nacin
+  //export async function modifyStudent( id, student ) {
+  const { data } = await axios.put(url(`/users/${id}`), student);
+
+  return data;
+}
+
+export async function deleteStudent(id) {
+  const { data } = await axios.delete(url(`/users/${id}`));
 
   return data;
 }
@@ -45,12 +54,15 @@ function createListItem({ id, name, testResult, hasPassed }) {
   <li id="student-${id}" class="student-list__item">
     Student: ${name} Result: ${testResult}
     <div class="status-marker ${status}"></div>
+    <button type="button">X</button>
   </li>
   `;
   const templateElement = createElement(html);
   const listElement = templateElement.childNodes[1];
+  const buttonElement = listElement.querySelector("button");
 
   listElement.onclick = () => selectStudent(id);
+  buttonElement.onclick = () => deleteStudent(id);
 
   return templateElement;
 }

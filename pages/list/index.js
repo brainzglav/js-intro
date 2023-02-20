@@ -27,7 +27,10 @@ function onSubmit(event) {
   }
 
   if (selectedStudent) {
-    modifyStudent({ name, percentage });
+    // 1. nacin
+    modifyStudent({ id: selectedStudent, name, percentage });
+    // 2. nacin
+    //modifyStudent(id, { name, percentage });
 
     return;
   }
